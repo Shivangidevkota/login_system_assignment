@@ -22,18 +22,6 @@ Open Your Browser: Navigate to http://localhost:3000 in your web browser to see 
 
 ## Structure of the App
 
-/src
-  ├── /components
-  │   ├── Login.js
-  │   ├── TaskManager.js
-  ├── /contexts
-  │   ├── UserContext.js
-  │   └── TaskContext.js
-  ├── App.js
-  ├── index.js
-  ├── App.css
-  └── package.json
-  
 * Login.js:
 Handles user authentication.
 Contains forms for user registration and login.
