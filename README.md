@@ -19,3 +19,5 @@ npm start
 This will start the local server, and you should see output indicating the app is running, usually at http://localhost:3000.
 
 Open Your Browser: Navigate to http://localhost:3000 in your web browser to see your app in action.
+
+*** Code Structure
