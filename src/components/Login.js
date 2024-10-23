@@ -3,21 +3,19 @@ import React, { useState } from 'react';
 import { useUser } from '../contexts/UserContext';
 import { TextField, Button, Typography, Box } from '@mui/material';
 
+
 const Login = () => {
     const { login, register, error } = useUser();
-    const [username, setUsername] = useState('');  // Ensure this is empty by default
-    const [password, setPassword] = useState('');  // Ensure this is empty by default
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!username || !password) {
-            return; // Handle empty fields as needed
-        }
         if (isRegistering) {
-            register(username, password); // Register with username and password
+            register(username, password);
         } else {
-            login(username, password); // Login with username and password
+            login(username, password);
         }
     };
 
@@ -30,8 +28,9 @@ const Login = () => {
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={username} // Value comes from state, so it starts empty
+                    value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                 />
                 <TextField
                     label="Password"
@@ -39,17 +38,18 @@ const Login = () => {
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={password} // Value comes from state, so it starts empty
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
-                <Button variant="contained" type="submit" fullWidth>
+                <Button variant="contained" type="submit" sx={{ mt: 2 }}>
                     {isRegistering ? 'Register' : 'Login'}
-                </Button>
-                <Button variant="text" onClick={() => setIsRegistering(!isRegistering)} fullWidth>
-                    {isRegistering ? 'Switch to Login' : 'Switch to Register'}
                 </Button>
                 {error && <Typography color="error">{error}</Typography>}
             </form>
+            <Button onClick={() => setIsRegistering(!isRegistering)} sx={{ mt: 2 }}>
+                {isRegistering ? 'Already have an account? Login' : 'Need an account? Register'}
+            </Button>
         </Box>
     );
 };
