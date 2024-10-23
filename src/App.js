@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { UserProvider, useUser } from './contexts/UserContext'; // Import useUser here
+import { TaskProvider } from './contexts/TaskContext';
+import Login from './components/Login';
+import TaskManager from './components/TaskManager';
+import { CssBaseline, Container, ThemeProvider, createTheme } from '@mui/material';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const theme = createTheme();
+
+const App = () => {
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <UserProvider>
+                <TaskProvider>
+                    <Main />
+                </TaskProvider>
+            </UserProvider>
+        </ThemeProvider>
+    );
+};
+
+const Main = () => {
+    const { username } = useUser(); // Use useUser here
+
+    return (
+        <Container maxWidth="sm">
+            {username ? <TaskManager /> : <Login />}
+        </Container>
+    );
+};
 
 export default App;
